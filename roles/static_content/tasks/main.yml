@@ -1,0 +1,6 @@
+
+- name: Download static images
+  ansible.builtin.get_url:
+    url: https://tinyurl.com/5dzjhdn6
+    dest: /var/www/images
+    mode: '0755'

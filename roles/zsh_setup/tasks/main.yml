@@ -1,0 +1,11 @@
+
+- name: Install zsh
+  ansible.builtin.package:
+    name: zsh
+    state: present
+
+- name: Install ohmyzsh for zsh users
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: /home/{{ item.name }}/.oh-my-zsh
+  loop: "{{ users | selectattr('shell', 'equalto', '/bin/zsh') | list }}"

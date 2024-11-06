@@ -1,0 +1,11 @@
+
+- name: Setup static server
+  hosts: all
+  become: yes
+  roles:
+    - user_management
+    - zsh_setup
+    - ssh_config
+    - package_install
+    - nginx_setup
+    - static_content

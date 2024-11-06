@@ -1,0 +1,22 @@
+
+- name: Install nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
+- name: Configure nginx with gzip and caching for static content
+  ansible.builtin.template:
+    src: nginx.j2
+    dest: /etc/nginx/sites-available/static_server
+
+- name: Enable nginx site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/static_server
+    dest: /etc/nginx/sites-enabled/static_server
+    state: link
+
+- name: Ensure nginx is running
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes

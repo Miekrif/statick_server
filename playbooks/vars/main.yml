@@ -1,0 +1,23 @@
+
+# Static content download variables
+image_url: "https://tinyurl.com/5dzjhdn6"
+local_archive_path: "roles/static_content/files/More clouds from me.zip"
+
+# User and group management variables
+custom_groups:
+  - devops
+  - admins
+
+users:
+  - name: "user1"
+    shell: "/bin/bash"
+    state: "present"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD... example"
+    password: "{{ 'password' | password_hash('sha512') }}"
+    groups: ["devops", "admins"]
+  - name: "user2"
+    shell: "/bin/zsh"
+    state: "present"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD... example2"
+    password: "{{ 'password' | password_hash('sha512') }}"
+    groups: ["devops"]
